@@ -1,0 +1,91 @@
+.contest-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+.contest-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.platform {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.bookmark-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+.bookmark-btn:hover {
+    transform: scale(1.1);
+}
+
+.contest-name {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.contest-info {
+    margin-bottom: 1rem;
+}
+
+.time-remaining {
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+.duration {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.card-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.contest-link,
+.solution-link {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.contest-link {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.solution-link {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+/* Status-specific styles */
+.upcoming { border-left: 4px solid var(--upcoming-color); }
+.ongoing { border-left: 4px solid var(--ongoing-color); }
+.completed { border-left: 4px solid var(--completed-color); } 
