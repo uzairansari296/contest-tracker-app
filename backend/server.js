@@ -17,8 +17,8 @@ const server = http.createServer(app);
 app.use(express.json());
 app.use(cors({
   origin: [
-    'https://your-frontend-url.vercel.app',
-    'http://localhost:3000' // Keep for local development
+    'http://localhost:3000',
+    'https://your-vercel-frontend-url.vercel.app'
   ],
   credentials: true
 }));
@@ -78,7 +78,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: "Something went wrong!" });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 
 server.listen(PORT, () => {
   console.log(`🚀 Server is running on port ${PORT}`);
