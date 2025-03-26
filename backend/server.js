@@ -18,7 +18,8 @@ app.use(express.json());
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'https://contest-tracker-app-five.vercel.app'
+    'https://contest-tracker-app-five.vercel.app',
+    'https://contest-tracker-ggq2rjl25-mohammad-uzair-ansaris-projects.vercel.app'
   ],
   credentials: true
 }));
@@ -27,8 +28,9 @@ app.use(cors({
 const io = new Server(server, {
   cors: {
     origin: [
+      'http://localhost:3000',
       'https://contest-tracker-app-five.vercel.app',
-      'http://localhost:3000'
+      'https://contest-tracker-ggq2rjl25-mohammad-uzair-ansaris-projects.vercel.app'
     ],
     methods: ["GET", "POST"],
     credentials: true
