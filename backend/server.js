@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'https://your-vercel-frontend-url.vercel.app'
+    'https://contest-tracker-app-five.vercel.app'
   ],
   credentials: true
 }));
@@ -27,7 +27,7 @@ app.use(cors({
 const io = new Server(server, {
   cors: {
     origin: [
-      'https://your-frontend-url.vercel.app',
+      'https://contest-tracker-app-five.vercel.app',
       'http://localhost:3000'
     ],
     methods: ["GET", "POST"],
@@ -39,17 +39,32 @@ const io = new Server(server, {
 app.set('io', io);
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => {
-    console.log("✅ MongoDB Connected Successfully");
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
+    socketTimeoutMS: 45000, // Close sockets after 45s
+})
+.then(() => {
+    console.log('Connected to MongoDB Atlas');
     // Initial contest fetch
     fetchContests();
     // Schedule periodic updates
     setInterval(fetchContests, 1800000); // 30 minutes
-  })
-  .catch((err) => {
-    console.error("❌ MongoDB Connection Error:", err);
-  });
+})
+.catch((err) => {
+    console.error('MongoDB Connection Error:', err);
+});
+
+// Add error handler
+mongoose.connection.on('error', err => {
+    console.error('MongoDB connection error:', err);
+});
+
+// Add disconnection handler
+mongoose.connection.on('disconnected', () => {
+    console.log('MongoDB disconnected');
+});
 
 // Socket.io connection handling
 io.on("connection", (socket) => {
